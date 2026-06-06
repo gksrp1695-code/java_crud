@@ -12,7 +12,7 @@
     <div>제목:</div>
     <div>내용:</div>
     <div>이름:</div>
-    <a href="/member/login">로그인</a>
+    <a href=4"/member/login">로그인</a>
     <a href="/member/join">회원가입</a>
 
 </body>
