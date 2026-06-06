@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.crud</groupId>
+    <artifactId>java_crud</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <!-- https://mvnrepository.com/ 에서 dependency 를 가져옴-->
+    <dependencies>
+        <!-- Spring MVC - 웹 요청/응답 처리하는 Spring 핵심 라이브러리 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.39</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Servlet API - 브라우저 요청을 받아 처리하는 Java 웹 표준 라이브러리 (톰캣에 내장) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSP API - JSP 파일을 사용하기 위한 라이브러리 (톰캣에 내장) -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSTL - JSP에서 <c:forEach> 같은 태그를 편하게 쓸 수 있게 해주는 라이브러리 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- MariaDB 드라이버 - MariaDB 데이터베이스 연결할 때 필요 -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.7.9</version>
+        </dependency>
+        <!-- MyBatis - SQL 쿼리를 Java 코드와 분리해서 편하게 관리해주는 라이브러리 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.13</version>
+        </dependency>
+        <!-- MyBatis-Spring - MyBatis와 Spring을 연결해주는 라이브러리 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <!-- Spring JDBC - DB 트랜잭션 및 데이터 처리를 도와주는 라이브러리 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.39</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- WAR 파일로 빌드할 때 필요한 플러그인 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
