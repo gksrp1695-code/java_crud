@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -48,6 +49,38 @@ public class BoardController {
         // Service에 글쓰기 요청
         boardService.insert(dto);
         // 등록 후 목록 페이지로 이동
+        return "redirect:/board/list";
+    }
+ // 게시글 상세보기 - /board/detail?no=1 로 접속하면 실행
+    @GetMapping("/detail")
+    public String detail(@RequestParam int board_no, Model model) {
+        // board_no로 게시글 1개 조회
+        BoardDto board = boardService.selectOne(board_no);
+        // JSP에 board 데이터 전달
+        model.addAttribute("board", board);
+        // views/board/detail.jsp 로 이동
+        return "board/detail";
+    }
+ // 수정 페이지 이동 - /board/update?board_no=1 GET 요청
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("board_no") int board_no, Model model) {
+        // 기존 게시글 데이터 가져와서 JSP에 전달
+        BoardDto board = boardService.selectOne(board_no);
+        model.addAttribute("board", board);
+        return "board/update";
+    }
+    // 수정 처리 - /board/update POST 요청
+    @PostMapping("/update")
+    public String update(BoardDto dto) {
+        boardService.update(dto);
+        // 수정 후 상세보기로 이동
+        return "redirect:/board/detail?board_no=" + dto.getBoard_no();
+    }
+ // 게시글 삭제 - /board/delete?board_no=1 GET 요청
+    @GetMapping("/delete")
+    public String delete(@RequestParam("board_no") int board_no) {
+        boardService.delete(board_no);
+        // 삭제 후 목록으로 이동
         return "redirect:/board/list";
     }
 }

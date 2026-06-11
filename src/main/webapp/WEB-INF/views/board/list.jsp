@@ -29,7 +29,7 @@
                 <td>${board.board_no}</td>
                 <td>
                     <!-- 제목 클릭하면 상세보기로 이동 -->
-                    <a href="/board/detail?no=${board.board_no}">${board.board_title}</a>
+                    <a href="/board/detail?board_no=${board.board_no}">${board.board_title}</a>
                 </td>
                 <td>${board.mem_id}</td>
                 <td>${board.board_date}</td>
