@@ -24,6 +24,7 @@
                 <td>
                 <!-- 화면에 닉네임 표시 -->
                 ${sessionScope.loginUser.mem_name}
+
                 <!-- 실제 전송용 hidden-->
                 <input type="hidden" name="mem_name" value="${sessionScope.loginUser.mem_name}">
                 </td>

@@ -41,7 +41,7 @@
                 <td>
                     <a href="/board/detail?board_no=${board.board_no}">${board.board_title}</a>
                 </td>
-                <td>${board.mem_id}</td>
+                <td>${board.mem_name}</td>
                 <td>${board.board_date}</td>
             </tr>
         </c:forEach>

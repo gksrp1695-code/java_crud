@@ -31,8 +31,8 @@
 
     <!-- 게시글 등록 -->
     <insert id="insert" parameterType="com.crud.dto.BoardDto">
-        INSERT INTO boards (board_title, mem_id, board_content, board_date)
-        VALUES (#{board_title}, #{mem_id}, #{board_content}, NOW())
+        INSERT INTO boards (board_title, mem_name, board_content, board_date)
+        VALUES (#{board_title}, #{mem_name}, #{board_content}, NOW())
     </insert>
 
     <!-- 게시글 수정 -->

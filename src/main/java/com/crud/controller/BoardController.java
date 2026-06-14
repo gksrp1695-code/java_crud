@@ -53,7 +53,7 @@ public class BoardController {
     public String insert(BoardDto dto, HttpSession session) {
         //로그인한 사용자 아이디를 작성자로 설정
         MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
-        dto.setMem_id(loginUser.getMem_name());
+        dto.setMem_name(loginUser.getMem_name());
         // Service에 글쓰기 요청
         boardService.insert(dto);
         // 등록 후 목록 페이지로 이동
