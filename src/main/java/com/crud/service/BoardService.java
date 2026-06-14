@@ -43,4 +43,9 @@ public class BoardService {
     public void delete(int board_no) {
         boardMapper.delete(board_no);
     }
+
+    // 조회수 증가
+    public void updateView(int board_no) {
+        boardMapper.updateView(board_no);
+    }
 }

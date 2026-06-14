@@ -28,6 +28,9 @@ public class BoardDto {
     // 작성일 (DB의 board_date 컬럼)
     private String board_date;
 
+    // 조회수 (DB의 board_view 컬럼)
+    private int board_view;
+
     // ===================== Getter =====================
     // Getter = private 변수의 값을 외부에서 읽을 때 사용
 
@@ -36,6 +39,7 @@ public class BoardDto {
     public String getMem_id() { return mem_id; }
     public String getBoard_content() { return board_content; }
     public String getBoard_date() { return board_date; }
+    public int getBoard_view() { return board_view; }
 
     // ===================== Setter =====================
     // Setter = private 변수에 값을 외부에서 넣을 때 사용
@@ -45,4 +49,5 @@ public class BoardDto {
     public void setMem_id(String mem_id) { this.mem_id = mem_id; }
     public void setBoard_content(String board_content) { this.board_content = board_content; }
     public void setBoard_date(String board_date) { this.board_date = board_date; }
+    public void setBoard_view(int board_view) { this.board_view = board_view; }
 }
