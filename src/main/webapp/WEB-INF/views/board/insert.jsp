@@ -21,7 +21,12 @@
             </tr>
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="mem_id"></td>
+                <td>
+                <!-- 화면에 닉네임 표시 -->
+                ${sessionScope.loginUser.mem_name}
+                <!-- 실제 전송용 hidden-->
+                <input type="hidden" name="mem_name" value="${sessionScope.loginUser.mem_name}">
+                </td>
             </tr>
             <tr>
                 <td>내용</td>

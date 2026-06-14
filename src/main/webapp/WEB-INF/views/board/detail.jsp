@@ -39,7 +39,7 @@
     </table>
 
     <!-- 로그인한 사용자만 수정/삭제 버튼 표시 -->
-    <c:if test="${sessionScope.loginUser != null}">
+    <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.mem_id == board.mem_id}">
         <a href="/board/update?board_no=${board.board_no}">수정</a>
         <a href="/board/delete?board_no=${board.board_no}">삭제</a>
     </c:if>

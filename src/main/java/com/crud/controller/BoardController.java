@@ -1,6 +1,7 @@
 package com.crud.controller;
 
 import com.crud.dto.BoardDto;
+import com.crud.dto.MemberDto;
 import com.crud.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,10 @@ public class BoardController {
 
     // 글쓰기 처리
     @PostMapping("/insert")
-    public String insert(BoardDto dto) {
+    public String insert(BoardDto dto, HttpSession session) {
+        //로그인한 사용자 아이디를 작성자로 설정
+        MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+        dto.setMem_id(loginUser.getMem_name());
         // Service에 글쓰기 요청
         boardService.insert(dto);
         // 등록 후 목록 페이지로 이동
@@ -92,5 +96,5 @@ public class BoardController {
         boardService.delete(board_no);
         // 삭제 후 목록으로 이동
         return "redirect:/board/list";
-    }
+         }
     }
