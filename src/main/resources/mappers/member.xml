@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    MemberMapper.java와 연결되는 SQL 파일
+    namespace = MemberMapper 인터페이스 경로
+-->
+<mapper namespace="com.crud.mapper.MemberMapper">
+
+    <!-- 회원가입 - mem_id, mem_pw, mem_name을 DB에 저장 -->
+    <insert id="insert" parameterType="com.crud.dto.MemberDto">
+        INSERT INTO members (mem_id, mem_pw, mem_name)
+        VALUES (#{mem_id}, #{mem_pw}, #{mem_name})
+    </insert>
+
+    <!-- 로그인 - 아이디와 비밀번호로 회원 조회 -->
+    <!-- 일치하는 회원이 있으면 MemberDto 반환, 없으면 null 반환 -->
+    <select id="login" parameterType="com.crud.dto.MemberDto" resultType="com.crud.dto.MemberDto">
+        SELECT * FROM members
+        WHERE mem_id = #{mem_id}
+        AND mem_pw = #{mem_pw}
+    </select>
+
+</mapper>

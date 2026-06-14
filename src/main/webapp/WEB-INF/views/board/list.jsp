@@ -13,6 +13,8 @@
 
     <!-- 게시글 등록 버튼 -->
     <a href="/board/insert">글쓰기</a>
+    <a href="/member/join">회원가입</a>
+    <a href="/member/login">로그인</a>
 
     <!-- 게시글 목록 테이블 -->
     <table border="1">
@@ -29,7 +31,7 @@
                 <td>${board.board_no}</td>
                 <td>
                     <!-- 제목 클릭하면 상세보기로 이동 -->
-                    <a href="/board/detail?no=${board.board_no}">${board.board_title}</a>
+                    <a href="/board/detail?board_no=${board.board_no}">${board.board_title}</a>
                 </td>
                 <td>${board.mem_id}</td>
                 <td>${board.board_date}</td>
