@@ -31,8 +31,8 @@
 
     <!-- 게시글 등록 -->
     <insert id="insert" parameterType="com.crud.dto.BoardDto">
-        INSERT INTO boards (board_title, mem_id, board_content, board_date)
-        VALUES (#{board_title}, #{mem_id}, #{board_content}, NOW())
+        INSERT INTO boards (board_title, mem_name, board_content, board_date)
+        VALUES (#{board_title}, #{mem_name}, #{board_content}, NOW())
     </insert>
 
     <!-- 게시글 수정 -->
@@ -46,6 +46,13 @@
     <delete id="delete" parameterType="int">
         DELETE FROM boards WHERE board_no = #{board_no}
     </delete>
+
+    <!-- 조회수 증가 - 게시글 클릭할 때마다 +1 -->
+    <update id="updateView" parameterType="int">
+        UPDATE boards
+        SET board_view = board_view + 1
+        WHERE board_no = #{board_no}
+    </update>
 
 </mapper>
 

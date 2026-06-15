@@ -11,8 +11,20 @@
 <body>
     <h2>게시글 목록</h2>
 
-    <!-- 게시글 등록 버튼 -->
-    <a href="/board/insert">글쓰기</a>
+    <!-- 로그인 상태에 따라 버튼 다르게 표시 -->
+    <c:choose>
+        <c:when test="${sessionScope.loginUser != null}">
+            <!-- 로그인 상태 -->
+            ${sessionScope.loginUser.mem_name}님 환영합니다!
+            <a href="/board/insert">글쓰기</a>
+            <a href="/member/logout">로그아웃</a>
+        </c:when>
+        <c:otherwise>
+            <!-- 비로그인 상태 -->
+            <a href="/member/login">로그인</a>
+            <a href="/member/join">회원가입</a>
+        </c:otherwise>
+    </c:choose>
 
     <!-- 게시글 목록 테이블 -->
     <table border="1">
@@ -23,15 +35,17 @@
             <th>날짜</th>
         </tr>
 
-        <!-- Controller에서 전달받은 list를 반복해서 출력 -->
         <c:forEach var="board" items="${list}">
             <tr>
                 <td>${board.board_no}</td>
                 <td>
+<<<<<<< HEAD
                     <!-- 제목 클릭하면 상세보기로 이동 -->
+=======
+>>>>>>> origin/main
                     <a href="/board/detail?board_no=${board.board_no}">${board.board_title}</a>
                 </td>
-                <td>${board.mem_id}</td>
+                <td>${board.mem_name}</td>
                 <td>${board.board_date}</td>
             </tr>
         </c:forEach>

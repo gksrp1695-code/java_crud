@@ -23,4 +23,6 @@ public interface BoardMapper {
     // 게시글 삭제
     void delete(int board_no);
 
+    // 조회수 증가
+    void updateView(int board_no);
 }
