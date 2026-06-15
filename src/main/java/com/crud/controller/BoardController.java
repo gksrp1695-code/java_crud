@@ -1,6 +1,7 @@
 package com.crud.controller;
 
 import com.crud.dto.BoardDto;
+import com.crud.dto.MemberDto;
 import com.crud.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -23,7 +26,7 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    // 게시글 목록 조회 - /board/list 로 접속하면 실행
+    // 게시글 목록 조회
     @GetMapping({"/list", "/list/"})
     public String list(Model model) {
         // Service에서 게시글 전체 목록 가져옴
@@ -35,19 +38,94 @@ public class BoardController {
         // views/board/list.jsp 로 이동
         return "board/list";
     }
-    // 글쓰기 페이지 이동 - /board/insert GET 요청
+    // 글쓰기 페이지 이동
     @GetMapping("/insert")
-    public String insertForm() {
+    public String insertForm(HttpSession session) {
+        if(session.getAttribute("loginUser") == null){
+            return "redirect:/member/login";
+        }
         // views/board/insert.jsp 로 이동
         return "board/insert";
     }
 
-    // 글쓰기 처리 - /board/insert POST 요청
+    // 글쓰기 처리
     @PostMapping("/insert")
-    public String insert(BoardDto dto) {
+    public String insert(BoardDto dto, HttpSession session) {
+        //로그인한 사용자 아이디를 작성자로 설정
+        MemberDto loginUser = (MemberDto) session.getAttribute("loginUser");
+        dto.setMem_name(loginUser.getMem_name());
         // Service에 글쓰기 요청
         boardService.insert(dto);
         // 등록 후 목록 페이지로 이동
         return "redirect:/board/list";
     }
+<<<<<<< HEAD
+ // 게시글 상세보기 - /board/detail?no=1 로 접속하면 실행
+    @GetMapping("/detail")
+    public String detail(@RequestParam int board_no, Model model) {
+        // board_no로 게시글 1개 조회
+        BoardDto board = boardService.selectOne(board_no);
+        // JSP에 board 데이터 전달
+        model.addAttribute("board", board);
+        // views/board/detail.jsp 로 이동
+        return "board/detail";
+    }
+ // 수정 페이지 이동 - /board/update?board_no=1 GET 요청
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("board_no") int board_no, Model model) {
+=======
+    @GetMapping("/detail")
+    public String detail(@RequestParam("board_no") int board_no, Model model) {
+        //조회수 증가
+        boardService.updateView(board_no);
+        //게시글 조회
+        BoardDto board = boardService.selectOne(board_no);
+        model.addAttribute("board", board);  // 이게 없었어요!
+        return "board/detail";
+    }
+    // 수정 페이지 이동
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("board_no") int board_no, Model model, HttpSession session) {
+        if(session.getAttribute("loginUser") == null){
+            return "redirect:/member/login";
+        }
+>>>>>>> origin/main
+        // 기존 게시글 데이터 가져와서 JSP에 전달
+        BoardDto board = boardService.selectOne(board_no);
+        model.addAttribute("board", board);
+        return "board/update";
+    }
+<<<<<<< HEAD
+    // 수정 처리 - /board/update POST 요청
+=======
+
+    // 수정 처리
+>>>>>>> origin/main
+    @PostMapping("/update")
+    public String update(BoardDto dto) {
+        boardService.update(dto);
+        // 수정 후 상세보기로 이동
+        return "redirect:/board/detail?board_no=" + dto.getBoard_no();
+    }
+<<<<<<< HEAD
+ // 게시글 삭제 - /board/delete?board_no=1 GET 요청
+    @GetMapping("/delete")
+    public String delete(@RequestParam("board_no") int board_no) {
+        boardService.delete(board_no);
+        // 삭제 후 목록으로 이동
+        return "redirect:/board/list";
+    }
 }
+=======
+    // 게시글 삭제
+    @GetMapping("/delete")
+    public String delete(@RequestParam("board_no") int board_no, HttpSession session) {
+        if(session.getAttribute("loginUser")  == null){
+            return "redirect:/member/login";
+        }
+        boardService.delete(board_no);
+        // 삭제 후 목록으로 이동
+        return "redirect:/board/list";
+         }
+    }
+>>>>>>> origin/main
