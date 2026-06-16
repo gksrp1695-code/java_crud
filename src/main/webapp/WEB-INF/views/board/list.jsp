@@ -39,10 +39,8 @@
             <tr>
                 <td>${board.board_no}</td>
                 <td>
-<<<<<<< HEAD
+
                     <!-- 제목 클릭하면 상세보기로 이동 -->
-=======
->>>>>>> origin/main
                     <a href="/board/detail?board_no=${board.board_no}">${board.board_title}</a>
                 </td>
                 <td>${board.mem_name}</td>

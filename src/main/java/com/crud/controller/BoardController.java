@@ -59,28 +59,11 @@ public class BoardController {
         // 등록 후 목록 페이지로 이동
         return "redirect:/board/list";
     }
-<<<<<<< HEAD
- // 게시글 상세보기 - /board/detail?no=1 로 접속하면 실행
-    @GetMapping("/detail")
-    public String detail(@RequestParam int board_no, Model model) {
-        // board_no로 게시글 1개 조회
-        BoardDto board = boardService.selectOne(board_no);
-        // JSP에 board 데이터 전달
-        model.addAttribute("board", board);
-        // views/board/detail.jsp 로 이동
-        return "board/detail";
-    }
- // 수정 페이지 이동 - /board/update?board_no=1 GET 요청
-    @GetMapping("/update")
-    public String updateForm(@RequestParam("board_no") int board_no, Model model) {
-=======
     @GetMapping("/detail")
     public String detail(@RequestParam("board_no") int board_no, Model model) {
-        //조회수 증가
         boardService.updateView(board_no);
-        //게시글 조회
         BoardDto board = boardService.selectOne(board_no);
-        model.addAttribute("board", board);  // 이게 없었어요!
+        model.addAttribute("board", board);
         return "board/detail";
     }
     // 수정 페이지 이동
@@ -89,43 +72,26 @@ public class BoardController {
         if(session.getAttribute("loginUser") == null){
             return "redirect:/member/login";
         }
->>>>>>> origin/main
         // 기존 게시글 데이터 가져와서 JSP에 전달
         BoardDto board = boardService.selectOne(board_no);
         model.addAttribute("board", board);
         return "board/update";
     }
-<<<<<<< HEAD
-    // 수정 처리 - /board/update POST 요청
-=======
 
     // 수정 처리
->>>>>>> origin/main
     @PostMapping("/update")
     public String update(BoardDto dto) {
         boardService.update(dto);
         // 수정 후 상세보기로 이동
         return "redirect:/board/detail?board_no=" + dto.getBoard_no();
     }
-<<<<<<< HEAD
- // 게시글 삭제 - /board/delete?board_no=1 GET 요청
-    @GetMapping("/delete")
-    public String delete(@RequestParam("board_no") int board_no) {
-        boardService.delete(board_no);
-        // 삭제 후 목록으로 이동
-        return "redirect:/board/list";
-    }
-}
-=======
     // 게시글 삭제
     @GetMapping("/delete")
     public String delete(@RequestParam("board_no") int board_no, HttpSession session) {
-        if(session.getAttribute("loginUser")  == null){
+        if(session.getAttribute("loginUser") == null){
             return "redirect:/member/login";
         }
         boardService.delete(board_no);
-        // 삭제 후 목록으로 이동
         return "redirect:/board/list";
-         }
     }
->>>>>>> origin/main
+}

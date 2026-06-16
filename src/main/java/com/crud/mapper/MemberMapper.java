@@ -15,4 +15,6 @@ public interface MemberMapper {
 
     // 로그인 - 아이디로 회원 정보 조회
     MemberDto login(MemberDto dto);
+    
+    MemberDto findById(String mem_id);
 }
