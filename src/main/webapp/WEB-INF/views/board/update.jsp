@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-    <title>게시글 수정</title>
-=======
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>게시글 수정</title>
@@ -14,7 +7,6 @@
         src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
->>>>>>> origin/main
 </head>
 <body>
     <h2>게시글 수정</h2>
@@ -30,7 +22,7 @@
             </tr>
             <tr>
                 <td>작성자</td>
-                <td><input type="text" name="mem_id" value="${board.mem_id}" readonly></td>
+                <td><input type="text" name="mem_name" value="${board.mem_name}" readonly></td>
             </tr>
             <tr>
                 <td>내용</td>
